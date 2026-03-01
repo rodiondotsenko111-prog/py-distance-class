@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 from typing import Union
 
 
@@ -14,14 +16,14 @@ class Distance:
     def __repr__(self) -> str:
         return f"Distance(km={self.km})"
 
-    def __add__(self, other: Union["Distance", Number]) -> "Distance":
+    def __add__(self, other: Union[Distance, Number]) -> Distance:
         if isinstance(other, Distance):
             return Distance(self.km + other.km)
         if isinstance(other, (int, float)):
             return Distance(self.km + other)
         return NotImplemented
 
-    def __iadd__(self, other: Union["Distance", Number]) -> "Distance":
+    def __iadd__(self, other: Union[Distance, Number]) -> Distance:
         if isinstance(other, Distance):
             self.km += other.km
             return self
@@ -30,25 +32,25 @@ class Distance:
             return self
         return NotImplemented
 
-    def __mul__(self, other: Number) -> "Distance":
+    def __mul__(self, other: Number) -> Distance:
         if isinstance(other, (int, float)):
             return Distance(self.km * other)
         return NotImplemented
 
-    def __truediv__(self, other: Number) -> "Distance":
+    def __truediv__(self, other: Number) -> Distance:
         if isinstance(other, (int, float)):
             result = round(self.km / other, 2)
             return Distance(result)
         return NotImplemented
 
-    def __lt__(self, other: Union["Distance", Number]) -> bool:
+    def __lt__(self, other: Union[Distance, Number]) -> bool:
         if isinstance(other, Distance):
             return self.km < other.km
         if isinstance(other, (int, float)):
             return self.km < other
         return NotImplemented
 
-    def __gt__(self, other: Union["Distance", Number]) -> bool:
+    def __gt__(self, other: Union[Distance, Number]) -> bool:
         if isinstance(other, Distance):
             return self.km > other.km
         if isinstance(other, (int, float)):
@@ -62,8 +64,8 @@ class Distance:
             return self.km == other
         return NotImplemented
 
-    def __le__(self, other: Union["Distance", Number]) -> bool:
+    def __le__(self, other: Union[Distance, Number]) -> bool:
         return self < other or self == other
 
-    def __ge__(self, other: Union["Distance", Number]) -> bool:
+    def __ge__(self, other: Union[Distance, Number]) -> bool:
         return self > other or self == other
